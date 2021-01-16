@@ -3,18 +3,20 @@ A repo containing various Python-written ciphers
 
 # Todo list
 
-- [x] Morse
+- AES
 
-- [x] Caesar
+- Caesar ✔️
 
-- [ ] Vigenère
+- DES
 
-- [x] Kid_RSA
+- Enigma
 
-- [x] RSA
+- Kid_RSA ✔️
 
-- [ ] DES
+- Morse ✔️
 
-- [ ] AES
+- RSA ✔️
 
-- [ ] Enigma
+- Vigenère ✔️
+
+- XOR Cipher ✔️
