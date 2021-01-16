@@ -2,7 +2,7 @@ import os
 encodedText = ""
 decodedText = ""
 
-characters  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9']
+characters  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
 
 def encodeCaesar(s, i):
@@ -38,9 +38,12 @@ def decodeCaesar(s, i):
     return decodedText
 
 
-print("Text: hi, world")
-print("Encoded: " + encodeCaesar("hi, world", 2))
+# Message must be a string, the key an integer
+message = "The quick brown fox jumps over the lazy dog"
+key = 2
 
-input()
+encrypted = encodeCaesar(message, key)
+print(encrypted)
 
-print("Decoded: " + decodeCaesar(encodedText, 2))
+decrypted = decodeCaesar(encrypted, key)
+print(decrypted)
