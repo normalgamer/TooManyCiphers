@@ -1,6 +1,5 @@
 import os
-encodedText = ""
-decodedText = ""
+
 
 characters  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
@@ -8,7 +7,6 @@ characters  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','
 def encodeCaesar(s, i):
 
     s = s.lower()
-    global encodedText
     encodedText = ""
 
     for char in s:
@@ -25,7 +23,6 @@ def encodeCaesar(s, i):
 def decodeCaesar(s, i):
 
     s = s.lower()
-    global decodedText
     decodedText = ""
 
     for char in s:
