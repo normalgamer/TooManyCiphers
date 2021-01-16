@@ -1,7 +1,10 @@
 import os
 
 
-characters  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+              'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+              'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+              'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 
 def encodeCaesar(s, i):
@@ -12,10 +15,10 @@ def encodeCaesar(s, i):
     for char in s:
         if char in characters:
             x = characters.index(char)
-            encodedText = encodedText+characters[x+i]
+            encodedText = encodedText + characters[x + i]
 
         else:
-            encodedText = encodedText+char
+            encodedText = encodedText + char
 
     return encodedText
 
@@ -28,9 +31,9 @@ def decodeCaesar(s, i):
     for char in s:
         if char in characters:
             x = characters.index(char)
-            decodedText = decodedText+characters[x-i]
+            decodedText = decodedText + characters[x - i]
         else:
-            decodedText = decodedText+char
+            decodedText = decodedText + char
 
     return decodedText
 
