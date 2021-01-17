@@ -3,22 +3,26 @@ A repo containing various Python-written ciphers
 
 # Todo list
 
-- AES
+- Create wiki explaining the ciphers (?)
 
-- Caesar ✔️
+- Add more ciphers
 
-- DES
+  - AES
 
-- Enigma
+  - Caesar ✔️
 
-- Kid_RSA ✔️
+  - DES
 
-- Morse ✔️
+  - Enigma
 
-- ROT13 ✔️
+  - Kid_RSA ✔️ (algorithm should be rewritten)
 
-- RSA ✔️
+  - Morse ✔️
 
-- Vigenère ✔️
+  - ROT13 ✔️
 
-- XOR Cipher ✔️
+  - RSA ✔️ (algorithm should be rewritten, missing the ability to write output to text file)
+
+  - Vigenère ✔️
+
+  - XOR Cipher ✔️
