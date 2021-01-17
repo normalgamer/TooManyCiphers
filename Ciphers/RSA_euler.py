@@ -101,12 +101,9 @@ decrypted = decryption(encrypted, d, n)
 print("\nDecrypted: " + decrypted)
 print("N length: " + str(n.bit_length()) + " bits")
 
-''' To be fixed
+
 encrypted = [hex(char) + " " for char in encrypted]
 encrypted = str(encrypted).replace("0x", "").replace("[", "").replace("]", "")\
     .replace("'", "")
 signature = sign(str(encrypted), d, n)
 print("\nVerified: " + str(verify(str(encrypted), signature, e, n)))
-'''
-
-input()
