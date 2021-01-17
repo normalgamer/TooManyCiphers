@@ -15,7 +15,7 @@ A repo containing various Python-written ciphers
 
 - Morse ✔️
 
-- ROT13✔️
+- ROT13 ✔️
 
 - RSA ✔️
 
