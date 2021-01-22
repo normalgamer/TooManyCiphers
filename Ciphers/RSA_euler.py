@@ -35,6 +35,9 @@ euler = 0
 ## Functions ##
 
 def getPrime():
+    # Adapted from https://www.geeksforgeeks.org/how-to-generate-large-prime-
+    # numbers-for-rsa-algorithm/
+    
     # Pre generated primes
     first_primes_list = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
                          31, 37, 41, 43, 47, 53, 59, 61, 67,
