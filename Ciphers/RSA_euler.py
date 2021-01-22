@@ -61,7 +61,8 @@ def encodeRSA(message, e, n):
     global c
     message = [ord(char) for char in message]
     c = [pow(char, e, n) for char in message]
-    return c
+
+    return [hex(chr) for chr in c]
 
 
 def decodeRSA(message, d, n):
@@ -113,14 +114,21 @@ text = "The quick brown fox jumps over the lazy dog"
 encrypted = encodeRSA(text, e, n)
 print("Input: " + text + "\n")
 print("Encrypted: ")
-print("".join([hex(char) + " " for char in encrypted]))
+print(encrypted)
 
-decrypted = decodeRSA(encrypted, d, n)
+
+#  Convert from int to hex to int
+#
+#  print(encrypted[0])
+#  print(hex(encrypted[0]))
+#  print(int(hex(encrypted[0]), 16))
+
+
+decrypted = decodeRSA([int(chr, 16) for chr in encrypted], d, n)
 print("\nDecrypted: " + decrypted)
 print("N length: " + str(n.bit_length()) + " bits")
 
 
-encrypted = [hex(char) + " " for char in encrypted]
 encrypted = str(encrypted).replace("0x", "").replace("[", "").replace("]", "")\
     .replace("'", "")
 signature = signRSA(str(encrypted), d, n)
