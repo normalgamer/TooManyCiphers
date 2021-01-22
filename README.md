@@ -21,7 +21,7 @@ A repo containing various Python-written ciphers
 
   - ROT13 ✔️
 
-  - RSA ✔️ (algorithm should be rewritten, missing the ability to write output to text file)
+  - RSA ✔️
 
   - Vigenère ✔️
 
