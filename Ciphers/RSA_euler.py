@@ -42,7 +42,7 @@ def gcd(a, b):
     return b
 
 
-def generateKey():
+def generateKeys():
     global e, d, n, euler
     n = p * q
     euler = (p - 1) * (q - 1)
@@ -57,20 +57,20 @@ def generateKey():
     private_key = (n, d)
 
 
-def encryption(message, e, n):
+def encodeRSA(message, e, n):
     global c
     message = [ord(char) for char in message]
     c = [pow(char, e, n) for char in message]
     return c
 
 
-def decryption(message, d, n):
+def decodeRSA(message, d, n):
     global m
     m = "".join([chr(pow(char, d, n)) for char in message])
     return m
 
 
-def sign(message, d, n):
+def signRSA(message, d, n):
     md5 = hashlib.md5()
     md5.update(message.encode("utf-8"))
     md5 = md5.hexdigest()
@@ -79,7 +79,7 @@ def sign(message, d, n):
     return signature
 
 
-def verify(message, signature, e, n):
+def verifyRSA(message, signature, e, n):
     md5 = hashlib.md5()
     md5.update(message.encode("utf-8"))
     md5 = md5.hexdigest()
@@ -99,7 +99,7 @@ try:
         d = int(keys[2])
 
 except IOError:     # File with keys doesn't exist
-    generateKey()
+    generateKeys()
     with open("key.txt", "w") as f:
         f.write(str(n))
         f.write("\n")
@@ -110,12 +110,12 @@ except IOError:     # File with keys doesn't exist
 
 
 text = "The quick brown fox jumps over the lazy dog"
-encrypted = encryption(text, e, n)
+encrypted = encodeRSA(text, e, n)
 print("Input: " + text + "\n")
 print("Encrypted: ")
 print("".join([hex(char) + " " for char in encrypted]))
 
-decrypted = decryption(encrypted, d, n)
+decrypted = decodeRSA(encrypted, d, n)
 print("\nDecrypted: " + decrypted)
 print("N length: " + str(n.bit_length()) + " bits")
 
@@ -123,5 +123,5 @@ print("N length: " + str(n.bit_length()) + " bits")
 encrypted = [hex(char) + " " for char in encrypted]
 encrypted = str(encrypted).replace("0x", "").replace("[", "").replace("]", "")\
     .replace("'", "")
-signature = sign(str(encrypted), d, n)
-print("\nVerified: " + str(verify(str(encrypted), signature, e, n)))
+signature = signRSA(str(encrypted), d, n)
+print("\nVerified: " + str(verifyRSA(str(encrypted), signature, e, n)))
