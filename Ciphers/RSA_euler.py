@@ -37,7 +37,7 @@ euler = 0
 def getPrime():
     # Adapted from https://www.geeksforgeeks.org/how-to-generate-large-prime-
     # numbers-for-rsa-algorithm/
-    
+
     # Pre generated primes
     first_primes_list = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
                          31, 37, 41, 43, 47, 53, 59, 61, 67,
@@ -92,7 +92,7 @@ def getPrime():
         return True
 
     while True:
-        n = 2048
+        n = 1024
         prime_candidate = getLowLevelPrime(n)
         if not isMillerRabinPassed(prime_candidate):
             continue
@@ -166,7 +166,7 @@ def verifyRSA(message, signature, e, n):
 
 # Keys are saved to a text file
 try:
-    with open("key.txt", "r") as f:
+    with open("rsa_key.txt", "r") as f:
         keys = f.readlines()
         n = int(keys[0])
         e = int(keys[1])
@@ -174,7 +174,7 @@ try:
 
 except IOError:     # File with keys doesn't exist
     generateKeys()
-    with open("key.txt", "w") as f:
+    with open("rsa_key.txt", "w") as f:
         f.write(str(n))
         f.write("\n")
         f.write(str(e))
@@ -202,7 +202,16 @@ print("\nDecrypted: " + decrypted)
 print("N length: " + str(n.bit_length()) + " bits")
 
 
-encrypted = str(encrypted).replace("0x", "").replace("[", "").replace("]", "")\
+encrypted2 = str(encrypted).replace("0x", "").replace("[", "").replace("]", "")\
     .replace("'", "")
-signature = signRSA(str(encrypted), d, n)
-print("\nVerified: " + str(verifyRSA(str(encrypted), signature, e, n)))
+signature = signRSA(str(encrypted2), d, n)
+print("\nVerified: " + str(verifyRSA(str(encrypted2), signature, e, n)))
+
+
+with open("rsa_encrypted.txt", "w") as f:
+    f.write(str(encrypted))
+
+with open("rsa_encrypted.txt", "r") as f:
+    data = f.read()
+    data = data.replace("[", "").replace("]", "").replace("'", "").split(", ")
+    print(decodeRSA([int(char, 16) for char in data], d, n))
