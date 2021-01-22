@@ -90,8 +90,26 @@ def verify(message, signature, e, n):
 
 ## Main ##
 
-text = "The quick browm fox jumps over the lazy dog"
-generateKey()
+# Keys are saved to a text file
+try:
+    with open("key.txt", "r") as f:
+        keys = f.readlines()
+        n = int(keys[0])
+        e = int(keys[1])
+        d = int(keys[2])
+
+except IOError:     # File with keys doesn't exist
+    generateKey()
+    with open("key.txt", "w") as f:
+        f.write(str(n))
+        f.write("\n")
+        f.write(str(e))
+        f.write("\n")
+        f.write(str(d))
+        f.write("\n")
+
+
+text = "The quick brown fox jumps over the lazy dog"
 encrypted = encryption(text, e, n)
 print("Input: " + text + "\n")
 print("Encrypted: ")
