@@ -114,11 +114,13 @@ def gcd(a, b):
 def generateKeys():
     global e, d, n, euler
 
+
     p = getPrime()
     q = getPrime()
 
     n = p * q
     euler = (p - 1) * (q - 1)
+    print(euler)
 
     e = random.randint(1, euler)
     while gcd(e, euler) != 1:
@@ -206,8 +208,8 @@ print("Key length: " + str(n.bit_length()) + " bits")
 
 
 # Message verification
-signature = signRSA(encrypted, d, n)
-print("\nVerified: " + str(verifyRSA(encrypted, signature, e, n)))
+signature = signRSA(text, d, n)
+print("\nVerified: " + str(verifyRSA(text, signature, e, n)))
 
 
 with open("rsa_encrypted.txt", "w") as f:
