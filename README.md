@@ -3,7 +3,7 @@ A repo containing various Python-written ciphers
 
 # Todo list
 
-- Create wiki explaining the ciphers (?)
+- Document all the algorithms
 
 - Add more ciphers
 
