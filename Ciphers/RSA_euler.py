@@ -139,25 +139,28 @@ def encodeRSA(message, e, n):
 
 
 def decodeRSA(message, d, n):
+    message = [int(chr, 16) for chr in message]
     global m
     m = "".join([chr(pow(char, d, n)) for char in message])
     return m
 
 
 def signRSA(message, d, n):
+    message = str(message).replace("0x", "").replace("[", "").replace("]", "")\
+        .replace("'", "").replace(", ", "")
     md5 = hashlib.md5()
     md5.update(message.encode("utf-8"))
     md5 = md5.hexdigest()
-
     signature = pow(int(md5, 16), d, n)
     return signature
 
 
 def verifyRSA(message, signature, e, n):
+    message = str(message).replace("0x", "").replace("[", "").replace("]", "")\
+        .replace("'", "").replace(", ", "")
     md5 = hashlib.md5()
     md5.update(message.encode("utf-8"))
     md5 = md5.hexdigest()
-
     verification_signature = pow(signature, e, n)
     return verification_signature == int(md5, 16)
 
@@ -197,15 +200,14 @@ print(encrypted)
 #  print(int(hex(encrypted[0]), 16))
 
 
-decrypted = decodeRSA([int(chr, 16) for chr in encrypted], d, n)
+decrypted = decodeRSA(encrypted, d, n)
 print("\nDecrypted: " + decrypted)
-print("N length: " + str(n.bit_length()) + " bits")
+print("Key length: " + str(n.bit_length()) + " bits")
 
 
-encrypted2 = str(encrypted).replace("0x", "").replace("[", "").replace("]", "")\
-    .replace("'", "")
-signature = signRSA(str(encrypted2), d, n)
-print("\nVerified: " + str(verifyRSA(str(encrypted2), signature, e, n)))
+# Message verification
+signature = signRSA(encrypted, d, n)
+print("\nVerified: " + str(verifyRSA(encrypted, signature, e, n)))
 
 
 with open("rsa_encrypted.txt", "w") as f:
@@ -214,4 +216,3 @@ with open("rsa_encrypted.txt", "w") as f:
 with open("rsa_encrypted.txt", "r") as f:
     data = f.read()
     data = data.replace("[", "").replace("]", "").replace("'", "").split(", ")
-    print(decodeRSA([int(char, 16) for char in data], d, n))
