@@ -18,7 +18,8 @@ and decryption.
 
 The keys are generated in the following way:
 
-- Choose two distinct prime numbers, _p_ and _q_.
+- Choose two distinct prime numbers, _p_ and _q_. Prime numbers can be easily
+  found using a [primality test](https://en.wikipedia.org/wiki/Primality_test).
   - For security reasons, _p_ and _q_ should be chosen at random and should be
     similar in magnitude but differ in length by a few digits to make factoring
     harder.
@@ -35,7 +36,7 @@ The keys are generated in the following way:
   - _φ(n)_ is used in the script because of it's speed.
 
 - Choose an integer _e_ such that _1 < e < φ(n)_ and _gcd(e, φ(n)) = 1_, that
-  is, _e and φ(n)_ are coprime.
+  is, _e_ and _φ(n)_ are coprime.
   - _e_ having a short bit-length and small Hamming weigth results in more
     efficient encryption - the most commonly chosen value is
     _e = 2^16 + 1 = 65,537_.
@@ -61,14 +62,16 @@ do it, he first turns _M_ into an integer _m_, such that 0 ≤ m < n by using an
 agreed-upon reversible protocol known as a padding scheme (not implemented in
 the script). He then computes the ciphertext _c_, using Alice's public key _e_,
 corresponding to
-
-`m^e ≡ c (mod n)`
+```
+m^e ≡ c (mod n)
+```
 
 ## Decryption
 Alice can recover _m_ from _c_ by using her private key exponent _d_ by
 computing
-
-`c^d ≡ m (mod n)`
+```
+c^d ≡ m (mod n)
+```
 
 ## Example
 
