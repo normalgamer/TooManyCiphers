@@ -21,8 +21,8 @@ A repo containing various Python-written ciphers
 
   - ROT13 ✔️
 
-  - RSA ✔️
+  - [RSA](docs/rsa.md) ✔️
 
   - Vigenère ✔️
 
-  - XOR Cipher ✔️
+  - [XOR Cipher](docs/xor.md) ✔️
