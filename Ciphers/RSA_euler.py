@@ -148,21 +148,21 @@ def decodeRSA(message, d, n):
 def signRSA(message, d, n):
     message = str(message).replace("0x", "").replace("[", "").replace("]", "")\
         .replace("'", "").replace(", ", "")
-    md5 = hashlib.md5()
-    md5.update(message.encode("utf-8"))
-    md5 = md5.hexdigest()
-    signature = pow(int(md5, 16), d, n)
+    sha256 = hashlib.sha256()
+    sha256.update(message.encode("utf-8"))
+    sha256 = sha256.hexdigest()
+    signature = pow(int(sha256, 16), d, n)
     return signature
 
 
 def verifyRSA(message, signature, e, n):
     message = str(message).replace("0x", "").replace("[", "").replace("]", "")\
         .replace("'", "").replace(", ", "")
-    md5 = hashlib.md5()
-    md5.update(message.encode("utf-8"))
-    md5 = md5.hexdigest()
+    sha256 = hashlib.sha256()
+    sha256.update(message.encode("utf-8"))
+    sha256 = sha256.hexdigest()
     verification_signature = pow(signature, e, n)
-    return verification_signature == int(md5, 16)
+    return verification_signature == int(sha256, 16)
 
 
 ## Main ##
